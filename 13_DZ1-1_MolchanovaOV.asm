@@ -1,11 +1,11 @@
 use16
 org 0x100
 
-mov cl, 10
 printer:					;вывод смещенной строки
+	push cx
+	xor cx, cx
 	inc cl
 	
-	push cx
 	call get_str_len
 	mov ax, 0xb800
 	mov es, ax
@@ -25,7 +25,7 @@ printer:					;вывод смещенной строки
 			add si, dx
 		
 			mov bl, [ds:si]
-			;mov bl, 'T'
+			;mov bl, 'Ten min'
 			
 			mov word[es:di], bx
 			add di, 2
@@ -96,6 +96,8 @@ _wait:
 	popa
 	ret
 	
+	;$Annushka has already bought the sunflower oil, and has not only bought it, but has already spilled it.   $
+	
 str_len dw 0
 si_1 dw 0
-msg db '$Annushka has already bought the sunflower oil, and has not only bought it, but has already spilled it.   $'
+msg db '$Annushka   $'
